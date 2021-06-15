@@ -30,6 +30,7 @@ use Sonata\AdminBundle\Form\Type\Filter\NumberType;
 use Sonata\AdminBundle\Form\Type\ModelAutocompleteType;
 use Sonata\AdminBundle\Form\Type\ModelHiddenType;
 use Sonata\AdminBundle\Form\Type\ModelListType;
+use Sonata\AdminBundle\Form\Type\ModelLinkType;
 use Sonata\AdminBundle\Form\Type\ModelReferenceType;
 use Sonata\AdminBundle\Form\Type\ModelType;
 use Symfony\Component\DependencyInjection\Loader\Configurator\ContainerConfigurator;
@@ -65,6 +66,12 @@ return static function (ContainerConfigurator $containerConfigurator): void {
             ->public()
             ->tag(AliasDeprecatedPublicServicesCompilerPass::PRIVATE_TAG_NAME, ['version' => '3.98'])
             ->tag('form.type', ['alias' => 'sonata_type_model_list'])
+
+        ->set('sonata.admin.form.type.model_link', ModelLinkType::class)
+            // NEXT_MAJOR: Remove public and sonata.container.private tag.
+            ->public()
+            ->tag(AliasDeprecatedPublicServicesCompilerPass::PRIVATE_TAG_NAME, ['version' => '3.98'])
+            ->tag('form.type', ['alias' => 'sonata_type_model_link'])
 
         ->set('sonata.admin.form.type.model_reference', ModelReferenceType::class)
             // NEXT_MAJOR: Remove public and sonata.container.private tag.
